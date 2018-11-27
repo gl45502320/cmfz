@@ -68,7 +68,7 @@
 
 
         <!--整合mybatis-->
-        <!--  <dependency>
+        <dependency>
               <groupId>org.mybatis.spring.boot</groupId>
               <artifactId>mybatis-spring-boot-starter</artifactId>
               <version>1.0.0</version>
@@ -93,7 +93,6 @@
               <artifactId>mybatis</artifactId>
               <version>3.2.8</version>
           </dependency>
-  -->
         <!--热部署-->
         <dependency>
             <groupId>org.springframework</groupId>

@@ -9,13 +9,13 @@ server:
 
 
 
-  #spring:
-  #  datasource:
-  #    type: com.alibaba.druid.pool.DruidDataSource
-  #    url: jdbc:mysql://localhost:3306/ddw
-  #    driver-class-name: com.mysql.jdbc.Driver
-  #    username: root
-  #    password: 123456
+  spring:
+    datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/cmfz
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: 123456
 
   #    视图解析器
   mvc:
@@ -34,9 +34,9 @@ server:
       charset: utf-8
       force: true
 
-#mybatis:
-#  type-aliases-package: com.gaolong.entity
-#  mapper-locations: com/gaolong/dao/*Dao.xml
+mybatis:
+  type-aliases-package: com.baizhi.entity
+  mapper-locations: com/baizhi/dao/*Dao.xml
 
 ##分页
 #pagehelper:
