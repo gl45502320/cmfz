@@ -1,6 +1,10 @@
 package com.baizhi.dao;
 
-public class AdminDao {
+import com.baizhi.entity.Admin;
+
+public interface AdminDao {
+
+    public Admin login(Admin admin);
 
 
 }

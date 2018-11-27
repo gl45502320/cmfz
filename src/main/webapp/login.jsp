@@ -12,26 +12,40 @@
     <link rel="stylesheet" href="css/login.css" type="text/css"></link>
     <script type="text/javascript" src="script/jquery.js"></script>
     <script type="text/javascript" src="script/common.js"></script>
+    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>--%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script type="text/javascript">
 
         $(function () {
             //点击更换验证码：
-            $("#captchaImage").click(function () {//点击更换验证码
-                alert("自己做");
-            });
+            // $("#captchaImage").click(function(){//点击更换验证码
+            // 	alert("自己做");
+            //
+            // });
 
-            //  form 表单提交
-            $("#loginForm").bind("submit", function () {
-                alert("自己做");
-                return false;
-            });
+            // //  form 表单提交
+            // $("#loginForm").bind("submit",function(){
+            // 	alert("自己做");
+            //     $("#loginForm").form("submit",{
+            // 	url:"login",
+            //
+            //     });
+            //     alert("123");
+            // });
         });
+
+        function login() {
+            alert("12356");
+
+        }
     </script>
 </head>
 <body>
 
 <div class="login">
-    <form id="loginForm" action="../back/index.html" method="post">
+    <form id="loginForm" action="${pageContext.request.contextPath}/login" method="post">
 
         <table>
             <tbody>
@@ -43,7 +57,7 @@
                     用户名:
                 </th>
                 <td>
-                    <input type="text" name="user.name" class="text" value="xxx" maxlength="20"/>
+                    <input type="text" name="name" class="text" maxlength="20"/>
                 </td>
             </tr>
             <tr>
@@ -51,8 +65,7 @@
                     密&nbsp;&nbsp;&nbsp;码:
                 </th>
                 <td>
-                    <input type="password" name="user.password" class="text" value="xxx" maxlength="20"
-                           autocomplete="off"/>
+                    <input type="password" name="password" class="text" maxlength="20" autocomplete="off"/>
                 </td>
             </tr>
 
@@ -60,8 +73,10 @@
                 <td>&nbsp;</td>
                 <th>验证码:</th>
                 <td>
-                    <input type="text" id="enCode" name="enCode" class="text captcha" maxlength="4" autocomplete="off"/>
-                    <img id="captchaImage" class="captchaImage" src="img/captcha.jpg" title="点击更换验证码"/>
+                    <input type="text" id="enCode" name="code" class="text captcha" maxlength="4" autocomplete="off"/>
+                    <img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/getKaptcha"
+                         title="点击更换验证码" width="60" height="40"
+                         onclick="document.getElementById('captchaImage').src='getKaptcha?time='+(new Date()).getTime();"/>
                 </td>
             </tr>
             <tr>

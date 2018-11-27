@@ -1,17 +1,16 @@
 package com.baizhi.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Admin {
+@NoArgsConstructor
+public class Menu {
     private int id;
-    private String name;
-    private String password;
-
-
+    private int parent_id;
+    private String title;
+    private String iconcls;
+    private String url;
 }
