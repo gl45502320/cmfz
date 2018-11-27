@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace的值是Dao接口的全限定名 -->
+<mapper namespace="com.baizhi.dao.MenuDao">
+    <resultMap id="Menulist" type="Menu">
+
+        <id column="pid" property="id"/>
+        <id column="ppid" property="parent_id"/>
+        <result column="ptitle" property="title"/>
+        <result column="piconcls" property="iconcls"/>
+        <result column="purl" property="url"/>
+
+        <collection property="listManu" ofType="Menu">
+            <id column="id" property="id"/>
+            <id column="parent_id" property="parent_id"/>
+            <result column="title" property="title"/>
+            <result column="iconcls" property="iconcls"/>
+            <result column="url" property="url"/>
+        </collection>
+
+    </resultMap>
+    <select id="selectAll" resultMap="Menulist">
+        select m1.id pid,m1.parent_id ppid,m1.title ptitle,m1.iconcls piconcls,m1.url purl,m2.*
+        from menu m1 LEFT JOIN menu m2 on m1.id=m2.parent_id where m1.parent_id is null
+    </select>
+
+
+</mapper>
+
+

@@ -22,18 +22,25 @@ public class AdminController {
         System.out.println("adminService" + adminService);
         System.out.println("admin" + admin);
         String kaptcha = (String) session.getAttribute("Kaptcha");
-        if (kaptcha.equalsIgnoreCase(code)) {
-            boolean bool = adminService.login(admin);
-            if (bool) {
-                return "forward:/main/main.jsp";
+        //session中验证码为空跳转到登录页面
+        if (kaptcha != null) {
+            //判断验证码是否正确
+            if (code != null && kaptcha.equalsIgnoreCase(code)) {
+                boolean bool = adminService.login(admin);
+                //判断用户名和密码是否正确
+                if (bool) {
+                    return "forward:/main/main.jsp";
+                } else {
+                    return "forward:/error.jsp";
+                }
             } else {
-
                 return "forward:/error.jsp";
             }
 
         } else {
-            return "forward:/error.jsp";
+            return "forward:/login.jsp";
         }
+
     }
 
 }

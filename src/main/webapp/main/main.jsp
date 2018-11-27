@@ -6,11 +6,43 @@
     <title>持名法州主页</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/IconExtension.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/icon.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
         <!--菜单处理-->
+        $(function () {
+            alert("1");
+            $.ajax({
+                url: "${pageContext.request.contextPath}/selectAllMenu",
+                success: function (dta) {
+                    var menu = "";
+                    for (var i = 0; i < dta.menus.length; i++) {
+                        for (var j = 0; j < dta.menus[i].listManu.length; j++) {
+                            if (dta.menus[i].id == dta.menus[i].listManu[j].parent_id) {
+                                console.log(dta.menus[i].listManu[j].title);
+                                //menu+=dta.menus[i].listManu[j].title;
+                                menu += "<a id=\"btn\" href=\"#\" class=\"easyui-linkbutton\" data-options=\"iconCls:'icon-search'\">" + dta.menus[i].listManu[j].title + "</a>";
+                                //menu+="<span data-options=\"fit:true\">"+dta.menus[i].listManu[j].title+"</span>";
+                            }
+                        }
+                        console.log("menu" + menu);
+                        $('#aa').accordion('add', {
+                            title: dta.menus[i].title,
+                            content: menu,
+                            selected: false
+                        });
+
+                        menu = "";
+
+                    }
+                },
+            });
+
+        })
+
+
     </script>
 
 </head>
@@ -38,7 +70,7 @@
 <div data-options="region:'center'">
     <div id="tt" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">
         <div title="主页" data-options="iconCls:'icon-neighbourhood',"
-             style="background-image:url(image/shouye.jpg);background-repeat: no-repeat;background-size:100% 100%;"></div>
+             style="background-image:url(main/image/shouye.jpg);background-repeat: no-repeat;background-size:100% 100%;"></div>
     </div>
 </div>
 </body>
