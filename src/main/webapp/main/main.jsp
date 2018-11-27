@@ -13,7 +13,7 @@
     <script type="text/javascript">
         <!--菜单处理-->
         $(function () {
-            alert("1");
+            // alert("1");
             $.ajax({
                 url: "${pageContext.request.contextPath}/selectAllMenu",
                 success: function (dta) {
@@ -21,15 +21,17 @@
                     for (var i = 0; i < dta.menus.length; i++) {
                         for (var j = 0; j < dta.menus[i].listManu.length; j++) {
                             if (dta.menus[i].id == dta.menus[i].listManu[j].parent_id) {
-                                console.log(dta.menus[i].listManu[j].title);
+                                // console.log(dta.menus[i].listManu[j].title);
+                                // console.log(dta.menus[i].listManu[j].iconcls);
                                 //menu+=dta.menus[i].listManu[j].title;
-                                menu += "<a id=\"btn\" href=\"#\" class=\"easyui-linkbutton\" data-options=\"iconCls:'icon-search'\">" + dta.menus[i].listManu[j].title + "</a>";
+                                menu += "<a id=\"btn\" href=\"#\" class=\"easyui-linkbutton\" data-options=\"iconCls:'" + dta.menus[i].listManu[j].iconcls + "'\">" + dta.menus[i].listManu[j].title + "</a>";
                                 //menu+="<span data-options=\"fit:true\">"+dta.menus[i].listManu[j].title+"</span>";
                             }
                         }
                         console.log("menu" + menu);
                         $('#aa').accordion('add', {
                             title: dta.menus[i].title,
+                            iconCls: dta.menus[i].iconcls,
                             content: menu,
                             selected: false
                         });
