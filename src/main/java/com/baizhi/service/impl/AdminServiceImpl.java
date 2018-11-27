@@ -12,15 +12,7 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminDao adminDao;
 
-    public boolean login(Admin admin) {
-        boolean bool = false;
-        Admin admins = adminDao.login(admin);
-        if (admins != null) {
-            bool = true;
-        } else {
-            bool = false;
-        }
-
-        return bool;
+    public Admin login(Admin admin) {
+        return adminDao.login(admin);
     }
 }

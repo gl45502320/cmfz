@@ -4,5 +4,5 @@ import com.baizhi.entity.Admin;
 
 public interface AdminService {
 
-    public boolean login(Admin admin);
+    public Admin login(Admin admin);
 }

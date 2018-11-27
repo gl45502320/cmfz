@@ -26,9 +26,10 @@ public class AdminController {
         if (kaptcha != null) {
             //判断验证码是否正确
             if (code != null && kaptcha.equalsIgnoreCase(code)) {
-                boolean bool = adminService.login(admin);
+                Admin admins = adminService.login(admin);
                 //判断用户名和密码是否正确
-                if (bool) {
+                if (admins != null) {
+                    session.setAttribute("admins", admins);
                     return "forward:/main/main.jsp";
                 } else {
                     return "forward:/error.jsp";
