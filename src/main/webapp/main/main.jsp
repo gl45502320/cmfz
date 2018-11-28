@@ -61,7 +61,7 @@
                         $.each(first.listManu, function (index1, second) {
                             // console.log(second);
 
-                            menu += "<div style=\"text-align: center\"><a id=\"btn\" href=\"#\" onclick=\"addTabs('" + second.title + "','" + second.url + "','" + second.iconcls + "')\" class=\"easyui-linkbutton\" data-options=\"iconCls:'" + second.iconcls + "'\">" + second.title + "</a></div>";
+                            menu += "<div style=\"text-align: center\"><a id=\"btn\" href=\"#\" onclick=\"addTabs('" + second.title + "','" + second.url + "','" + second.iconcls + "')\" class=\"easyui-linkbutton\"  data-options=\"iconCls:'" + second.iconcls + "',width:220,plain:false\">" + second.title + "</a></div>";
 
                         }),
                             $('#aa').accordion('add', {

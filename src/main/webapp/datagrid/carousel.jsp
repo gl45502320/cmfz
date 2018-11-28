@@ -3,19 +3,19 @@
     var toolbar = [{
         // handler: function(){alert('编辑按钮')}
     }, {
-        iconCls: 'icon-edit',
+        iconCls: 'icon-add',
         text: "添加",
         handler: function () {
             $("#dd").panel("open", true);
         }
     }, '-', {
-        iconCls: 'icon-help',
+        iconCls: 'icon-delete',
         text: "删除",
         handler: function () {
             $("#dg").edatagrid("destroyRow");
         }
     }, '-', {
-        iconCls: 'icon-help',
+        iconCls: 'icon-1012333',
         text: "修改",
         handler: function () {
             var rows = $("#dg").edatagrid("getSelected");
@@ -26,7 +26,7 @@
             }
         }
     }, '-', {
-        iconCls: 'icon-help',
+        iconCls: 'icon-picture_save',
         text: "保存",
         handler: function () {
             $("#dg").edatagrid("saveRow");
