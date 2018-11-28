@@ -1,8 +1,10 @@
 package com.baizhi.service;
 
 
-import java.util.Map;
+import com.baizhi.entity.Menu;
+
+import java.util.List;
 
 public interface MenuService {
-    public Map selectAll();
+    public List<Menu> selectAll();
 }
