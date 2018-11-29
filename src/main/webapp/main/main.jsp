@@ -31,28 +31,7 @@
                 dataType: "JSON",
                 type: "post",
                 success: function (dta) {
-                    // var menu = "";
-                    // for (var i = 0; i < dta.menus.length; i++) {
-                    //     for (var j = 0; j < dta.menus[i].listManu.length; j++) {
-                    //         if (dta.menus[i].id == dta.menus[i].listManu[j].parent_id) {
-                    //             // console.log(dta.menus[i].listManu[j].title);
-                    //             // console.log(dta.menus[i].listManu[j].iconcls);
-                    //             //menu+=dta.menus[i].listManu[j].title;
-                    //             menu += "<a id=\"btn\" href=\"#\" class=\"easyui-linkbutton\"  data-options=\"iconCls:'" + dta.menus[i].listManu[j].iconcls + "',plain:'true'\">" + dta.menus[i].listManu[j].title + "</a><br/>";
-                    //             //menu+="<span data-options=\"fit:true\">"+dta.menus[i].listManu[j].title+"</span>";
-                    //         }
-                    //     }
-                    //     console.log("menu" + menu);
-                    //     $('#aa').accordion('add', {
-                    //         title: dta.menus[i].title,
-                    //         iconCls: dta.menus[i].iconcls,
-                    //         content: menu,
-                    //         selected: false
-                    //     });
-                    //
-                    //     menu = "";
-                    //
-                    // }
+
                     $.each(dta, function (index, first) {
                         // console.log(dta);
                         // console.log(index);
@@ -61,10 +40,10 @@
                         $.each(first.listManu, function (index1, second) {
                             // console.log(second);
 
-                            menu += "<div style=\"text-align: center\"><a id=\"btn\" href=\"#\" onclick=\"addTabs('" + second.title + "','" + second.url + "','" + second.iconcls + "')\" class=\"easyui-linkbutton\"  data-options=\"iconCls:'" + second.iconcls + "',width:220,plain:false\">" + second.title + "</a></div>";
+                            menu += "<div style=\"text-align: center\"><a id=\"btn\" href=\"#\" onclick=\"addTabs('" + second.title + "','" + second.url + "','" + second.iconcls + "')\" class=\"easyui-linkbutton\"  data-options=\"iconCls:'" + second.iconcls + "',width:210,plain:false\">" + second.title + "</a></div>";
 
                         }),
-                            $('#aa').accordion('add', {
+                            $('#main_aa').accordion('add', {
                                 title: first.title,
                                 iconCls: first.iconcls,
                                 content: menu,
@@ -85,16 +64,17 @@
 
         function addTabs(title, url, iconcls) {
             console.log(title);
-            var bool = $('#tt').tabs("exists", title);
+            var bool = $('#main_tt').tabs("exists", title);
             if (bool) {
                 //（按标题）选中一个已经存在的选项卡
-                $('#tt').tabs("select", title);
+                $('#main_tt').tabs("select", title);
             } else {
+                console.log("url >  " + url)
                 // 添加一个未选中状态的选项卡面板
-                $('#tt').tabs('add', {
+                $('#main_tt').tabs('add', {
                     title: title,
                     closable: true,
-                    href: "${pageContext.request.contextPath}/datagrid/carousel.jsp",
+                    href: "${pageContext.request.contextPath}/datagrid/" + url,
                     selected: true,
                     //...
                 });
@@ -125,12 +105,12 @@
 </div>
 
 <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">
-    <div id="aa" class="easyui-accordion" data-options="fit:true">
+    <div id="main_aa" class="easyui-accordion" data-options="fit:true">
 
     </div>
 </div>
 <div data-options="region:'center'">
-    <div id="tt" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">
+    <div id="main_tt" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">
 
     </div>
 </div>

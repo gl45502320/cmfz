@@ -12,34 +12,11 @@
     <link rel="stylesheet" href="css/login.css" type="text/css"></link>
     <script type="text/javascript" src="script/jquery.js"></script>
     <script type="text/javascript" src="script/common.js"></script>
-    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script type="text/javascript">
 
-        $(function () {
-            //点击更换验证码：
-            // $("#captchaImage").click(function(){//点击更换验证码
-            // 	alert("自己做");
-            //
-            // });
-
-            // //  form 表单提交
-            // $("#loginForm").bind("submit",function(){
-            // 	alert("自己做");
-            //     $("#loginForm").form("submit",{
-            // 	url:"login",
-            //
-            //     });
-            //     alert("123");
-            // });
-        });
-
-        function login() {
-            alert("12356");
-
-        }
     </script>
 </head>
 <body>

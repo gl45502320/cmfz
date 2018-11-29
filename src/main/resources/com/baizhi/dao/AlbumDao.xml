@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AlbumDao">
+
+
+    <resultMap id="m1" type="Album">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="coverImg" property="coverimg" jdbcType="VARCHAR"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="broadCast" property="broadcast" jdbcType="VARCHAR"/>
+        <result column="brief" property="brief" jdbcType="VARCHAR"/>
+        <result column="publishDate" property="publishdate" jdbcType="TIMESTAMP"/>
+        <collection property="children" ofType="Audio">
+            <id column="did" property="id" jdbcType="INTEGER"/>
+            <result column="pid" property="parentId" jdbcType="VARCHAR"/>
+            <result column="ctitle" property="title" jdbcType="VARCHAR"/>
+            <result column="size" property="size" jdbcType="DOUBLE"/>
+            <result column="duration" property="duration" jdbcType="VARCHAR"/>
+            <result column="downPath" property="downpath" jdbcType="VARCHAR"/>
+            <result column="uploadDate" property="uploaddate" jdbcType="TIMESTAMP"/>
+        </collection>
+    </resultMap>
+
+    <!--<select id="listAllAlbum" resultMap="m1">-->
+    <!--SELECT c.*,d.id did,d.parent_id pid,d.title ctitle,d.size,d.duration,d.downPath,d.uploadDate-->
+    <!--FROM album c LEFT JOIN audio d-->
+    <!--ON c.id = d.parent_id-->
+
+    <!--</select>-->
+
+
+    <resultMap id="AllAlbumMap" type="Album">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="coverImg" property="coverimg" jdbcType="VARCHAR"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="broadCast" property="broadcast" jdbcType="VARCHAR"/>
+        <result column="brief" property="brief" jdbcType="VARCHAR"/>
+        <result column="publishDate" property="publishdate" jdbcType="DATE"/>
+
+        <collection property="children" ofType="Audio">
+            <id column="sid" property="id" jdbcType="INTEGER"/>
+            <result column="pid" property="parentId" jdbcType="VARCHAR"/>
+            <result column="stitle" property="title" jdbcType="VARCHAR"/>
+            <result column="size" property="size" jdbcType="DOUBLE"/>
+            <result column="duration" property="duration" jdbcType="VARCHAR"/>
+            <result column="downPath" property="downpath" jdbcType="VARCHAR"/>
+            <result column="uploadDate" property="uploaddate" jdbcType="TIMESTAMP"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="listAllAlbum" resultMap="AllAlbumMap">
+    SELECT a.*,au.id sid,au.parent_id pid,au.title stitle,au.size size,au.duration duration,au.downPath downPath,au.uploadDate uploadDate
+    FROM (SELECT * from album LIMIT #{start},#{row}) a LEFT JOIN audio au
+    on a.id=au.parent_id
+  </select>
+
+    <select id="countAlbum" resultType="int">
+    SELECT count(*) from album
+  </select>
+
+
+    <!--<select id="listAllAlbum" resultMap="AllAlbumMap">-->
+    <!--SELECT a.*,au.id sid,au.parent_id pid,au.title stitle,au.size size,au.duration duration,au.downPath downPath,au.uploadDate uploadDate-->
+    <!--FROM album a LEFT JOIN audio au-->
+    <!--on a.id=au.parent_id-->
+    <!--</select>-->
+
+
+    <sql id="Base_Column_List">
+    id, title, coverImg, count, score, author, broadCast, publishDate
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="AllAlbumMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from album
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from album
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.baizhi.entity.Album">
+    insert into album (id, title, coverImg, 
+      count, score, author, 
+      broadCast, publishDate)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{coverimg,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, 
+      #{broadcast,jdbcType=VARCHAR}, #{publishdate,jdbcType=DATE})
+  </insert>
+    <insert id="insertSelective" parameterType="com.baizhi.entity.Album">
+        insert into album
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="coverimg != null">
+                coverImg,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="broadcast != null">
+                broadCast,
+            </if>
+            <if test="publishdate != null">
+                publishDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="coverimg != null">
+                #{coverimg,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="broadcast != null">
+                #{broadcast,jdbcType=VARCHAR},
+            </if>
+            <if test="publishdate != null">
+                #{publishdate,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.baizhi.entity.Album">
+        update album
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="coverimg != null">
+                coverImg = #{coverimg,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=INTEGER},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="broadcast != null">
+                broadCast = #{broadcast,jdbcType=VARCHAR},
+            </if>
+            <if test="publishdate != null">
+                publishDate = #{publishdate,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.baizhi.entity.Album">
+    update album
+    set title = #{title,jdbcType=VARCHAR},
+      coverImg = #{coverimg,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      broadCast = #{broadcast,jdbcType=VARCHAR},
+      publishDate = #{publishdate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AudioDao">
+    <resultMap id="BaseResultMap" type="com.baizhi.entity.Audio">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="size" property="size" jdbcType="VARCHAR"/>
+        <result column="duration" property="duration" jdbcType="VARCHAR"/>
+        <result column="downPath" property="downpath" jdbcType="VARCHAR"/>
+        <result column="uploadDate" property="uploaddate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="addOneAudio">
+       insert into audio values((SELECT REPLACE(UUID(),'-','')),#{parentId},#{title},#{size},#{duration},#{downpath},now());
+   </insert>
+
+    <sql id="Base_Column_List">
+    id, parent_id, title, size, duration, downPath, uploadDate
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from audio
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from audio
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.baizhi.entity.Audio">
+    insert into audio (id, parent_id, title, 
+      size, duration, downPath, 
+      uploadDate)
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{duration,jdbcType=VARCHAR}, #{downpath,jdbcType=VARCHAR}, 
+      #{uploaddate,jdbcType=TIMESTAMP})
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.baizhi.entity.Audio">
+        insert into audio
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="size != null">
+                size,
+            </if>
+            <if test="duration != null">
+                duration,
+            </if>
+            <if test="downpath != null">
+                downPath,
+            </if>
+            <if test="uploaddate != null">
+                uploadDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="size != null">
+                #{size,jdbcType=VARCHAR},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=VARCHAR},
+            </if>
+            <if test="downpath != null">
+                #{downpath,jdbcType=VARCHAR},
+            </if>
+            <if test="uploaddate != null">
+                #{uploaddate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.baizhi.entity.Audio">
+        update audio
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="size != null">
+                size = #{size,jdbcType=VARCHAR},
+            </if>
+            <if test="duration != null">
+                duration = #{duration,jdbcType=VARCHAR},
+            </if>
+            <if test="downpath != null">
+                downPath = #{downpath,jdbcType=VARCHAR},
+            </if>
+            <if test="uploaddate != null">
+                uploadDate = #{uploaddate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.baizhi.entity.Audio">
+    update audio
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      downPath = #{downpath,jdbcType=VARCHAR},
+      uploadDate = #{uploaddate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

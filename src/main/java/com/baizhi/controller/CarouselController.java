@@ -51,23 +51,14 @@ public class CarouselController {
         String[] split = Filename.split("\\.");
 
         String Filenames = time + Filename;
-        System.out.println("Filenames--->" + Filenames);
         String img = "image";
         String realPath1 = request.getRealPath(img);
         String realPath = request.getSession().getServletContext().getRealPath(img);
 
-        System.out.println("realPath1-->" + realPath1);
-        System.out.println("realPath-->" + realPath);
-
-        System.out.println("Filename--->" + Filename);
-        System.out.println("carousel--->" + carousel);
-        System.out.println("file--->" + file);
-        System.out.println("time--->" + time);
         file.transferTo(new File(realPath + "\\" + Filenames));
         carousel.setImgPath(Filenames);
 
         return carouselService.addOneCarousel(carousel);
-//        return false;
 
     }
 }

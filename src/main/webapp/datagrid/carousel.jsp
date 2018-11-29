@@ -6,36 +6,36 @@
         iconCls: 'icon-add',
         text: "添加",
         handler: function () {
-            $("#dd").panel("open", true);
+            $("#carouse_dd").panel("open", true);
         }
     }, '-', {
         iconCls: 'icon-delete',
         text: "删除",
         handler: function () {
-            $("#dg").edatagrid("destroyRow");
+            $("#carouse_dg").edatagrid("destroyRow");
         }
     }, '-', {
         iconCls: 'icon-1012333',
         text: "修改",
         handler: function () {
-            var rows = $("#dg").edatagrid("getSelected");
+            var rows = $("#carouse_dg").edatagrid("getSelected");
             if (rows == null) {
                 $.messager.alert('警告', '警告消息');
             } else {
-                $("#dg").edatagrid("editRow", index);
+                $("#carouse_dg").edatagrid("editRow", index);
             }
         }
     }, '-', {
         iconCls: 'icon-picture_save',
         text: "保存",
         handler: function () {
-            $("#dg").edatagrid("saveRow");
+            $("#carouse_dg").edatagrid("saveRow");
         }
     }];
 
 
     $(function () {
-        $('#dg').edatagrid({
+        $('#carouse_dg').edatagrid({
             destroyUrl: "deleteOneCarousel",
             updateUrl: "updateCarouselStatus",
             toolbar: toolbar,
@@ -93,33 +93,35 @@
             ]]
         });
 
-        $('#dd').dialog({
-            title: 'My Dialog',
-            width: 400,
-            height: 200,
-            closed: true,
-            cache: false,
-            href: "",
-            modal: true
-        });
 
-
-        $('#tb1').textbox({
+        $('#carouse_tb1').textbox({
             buttonText: '&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;题&nbsp;&nbsp;',
             buttonAlign: 'left'
         });
 
-        $('#tb2').textbox({
+        $('#carouse_tb2').textbox({
             buttonText: '&nbsp;&nbsp;描&nbsp;&nbsp;&nbsp;述&nbsp;&nbsp;',
             buttonAlign: 'left'
         });
 
-        $('#fb').filebox({
+        $('#carouse_fb').filebox({
             buttonText: '选择文件',
             buttonAlign: 'left'
         });
 
-        $('#btn').linkbutton();
+        $('#carouse_btn').linkbutton();
+
+        $('#carouse_fb').validatebox({
+            required: true,
+        });
+        $.extend($.fn.validatebox.defaults.rules, {
+            minLength: {
+                validator: function (value, param) {
+                    return value.length > param[0];
+                },
+                message: '内容不能为空.',
+            }
+        });
 
     });
 
@@ -127,7 +129,7 @@
         $("#addFormCarousel").form("submit", {
             url: "addOneCarousel",
             success: function (data) {
-                $("#dd").dialog("close", true);
+                $("#carouse_dd").dialog("close", true);
 
             },
         });
@@ -136,13 +138,12 @@
 
 
 </script>
-<table id="dg"></table>
-<div id="dd" align="center">
+<table id="carouse_dg"></table>
+<div id="carouse_dd" align="center">
     <form id="addFormCarousel" method="post" enctype="multipart/form-data"><br/>
-        <input id="tb1" type="text" name="title" style="width:200px"/><br/><br/>
-        <input id="tb2" type="text" name="desc" style="width:200px"/><br/><br/>
-        <input id="fb" type="text" name="file" style="width:200px"/><br/><br/>
-        <a id="btn" href="#" onclick="addCarousel()">提交</a>
-
+        <input id="carouse_tb1" type="text" name="title" style="width:200px"/><br/><br/>
+        <input id="carouse_tb2" type="text" name="desc" style="width:200px"/><br/><br/>
+        <input id="carouse_fb" type="text" name="file" style="width:200px"/><br/><br/>
+        <a id="carouse_btn" href="#" onclick="addCarousel()">提交</a>
     </form>
 </div>
