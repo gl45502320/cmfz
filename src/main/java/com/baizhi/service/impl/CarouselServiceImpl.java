@@ -18,6 +18,7 @@ public class CarouselServiceImpl implements CarouselService {
 
     @Override
     public Map selectCarouselAll(int page, int rows) {
+
         Map map = new HashMap<>();
         int start = (page - 1) * rows;//每页的起始条
         List<Carousel> carousels = carouselDao.selectCarouselAll(start, rows);
