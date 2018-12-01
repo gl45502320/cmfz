@@ -1,15 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
 
-<%--<html>--%>
-<%--<head>--%>
-<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/default/easyui.css">--%>
-<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/IconExtension.css">--%>
-<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/icon.css">--%>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>--%>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>--%>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>--%>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>--%>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.edatagrid.js"></script>--%>
 <script type="text/javascript">
     var toolbar = [{
         // handler: function(){alert('编辑按钮')}
@@ -148,8 +138,6 @@
     }
 
 </script>
-<%--</head>--%>
-<%--<body>--%>
 <table id="carouse_dg"></table>
 <div id="carouse_dd" align="center">
     <form id="addFormCarousel" method="post" enctype="multipart/form-data"><br/>
@@ -159,5 +147,3 @@
         <a id="carouse_btn" href="#" onclick="addCarousel()">提交</a>
     </form>
 </div>
-<%--</body>--%>
-<%--<html>--%>
