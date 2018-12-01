@@ -2,6 +2,7 @@ package com.baizhi.dao;
 
 import com.baizhi.entity.User;
 import com.baizhi.entity.UserDTO;
+import com.baizhi.entity.UserFieldsDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -34,5 +35,12 @@ public interface UserDao {
     List<UserDTO> listAllMan();
 
     List<UserDTO> listAllWoman();
+
+
+    List<User> exportAllUser();
+
+    List<UserFieldsDTO> selectAllfields();
+
+
 
 }

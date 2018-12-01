@@ -20,6 +20,16 @@
     <select id="selectAllUser" resultMap="BaseResultMap">
     SELECT * FROM user
     </select>
+
+    <select id="exportAllUser" resultMap="BaseResultMap">
+    SELECT * FROM user
+    </select>
+
+    <select id="selectAllfields" resultType="UserFieldsDTO">
+    select COLUMN_NAME name,column_comment alias from INFORMATION_SCHEMA.Columns
+    where table_name='user' and table_schema='cmfz';
+    </select>
+
     <!--   -->
     <select id="selectWeekOneLogonUser" resultType="int">
         select count(*) from user where datediff(SYSDATE(),date)<![CDATA[  <  ]]>7

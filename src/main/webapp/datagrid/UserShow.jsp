@@ -15,9 +15,35 @@
 <%--</body>--%>
 <%--</html>--%>
 <script type="text/javascript">
+    var toolbar = [{
+        iconCls: 'icon-20130406125519344_easyicon_net_16',
+        text: "用户信息导入",
+        handler: function () {
+
+        }
+    }, '-', {
+        iconCls: 'icon-20130406125647919_easyicon_net_16',
+        text: "用户信息导出",
+        handler: function () {
+            $.ajax({
+                url: "exportUserMessage",
+                success: function (data) {
+                    console.log(data)
+                    if (data) {
+                        $.messager.alert('下载提示', '下载成功');
+                    } else {
+                        $.messager.alert('下载提示', '下载失败');
+
+                    }
+                },
+            });
+        }
+    }]
+
     $('#dg').datagrid({
         url: 'selectAllUser',
         fit: true,
+        toolbar: toolbar,
         fitColumns: true,
         rownumbers: true, //显示行号
         pagination: true,//显示分页工具栏

@@ -3,6 +3,7 @@ package com.baizhi.service.impl;
 import com.baizhi.dao.UserDao;
 import com.baizhi.entity.User;
 import com.baizhi.entity.UserDTO;
+import com.baizhi.entity.UserFieldsDTO;
 import com.baizhi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,5 +73,15 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> woman = userDao.listAllWoman();
         map.put("data", woman);
         return map;
+    }
+
+    @Override
+    public List<User> exportAllUser() {
+        return userDao.exportAllUser();
+    }
+
+    @Override
+    public List<UserFieldsDTO> selectAllfields() {
+        return userDao.selectAllfields();
     }
 }
