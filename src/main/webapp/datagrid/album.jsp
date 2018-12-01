@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
+
 <script type="text/javascript">
 
     var toolbar = [{
@@ -26,7 +27,7 @@
         iconCls: 'icon-add',
         text: "添加专辑",
         handler: function () {
-            $("#dg").edatagrid("destroyRow");
+
         }
     }, '-', {
         iconCls: 'icon-add',
@@ -55,12 +56,12 @@
             var row = $('#albumTable').treegrid("getSelected");
             if (row != null) {
                 if (row.parentId != null) {
-                    // location.href="${pageContext.request.contextPath}/downloadFile?downpath="+row.downpath+"&title="+row.title
+                    location.href = "${pageContext.request.contextPath}/downloadFile?downpath=" + row.downpath + "&title=" + row.title;
                     console.log(row);
-                    $.ajax({
-                        url: "downloadFile",
-                        data: "downpath=" + row.downpath + "&title=" + row.title,
-                    });
+                    // $.ajax({
+                    //     url: "downloadFile",
+                    //     data: "downpath=" + row.downpath + "&title=" + row.title,
+                    // });
 
                 } else {
                     $.messager.alert('提示', '请选择章节');
@@ -78,11 +79,16 @@
 
         $('#albumTable').treegrid({
             onDblClickRow: function (row) {
-
-                $("#audio_b").dialog("open");
-                $("#buttonsssss").prop("src", "${pageContext.request.contextPath}/audio/" + row.downpath);
+                if (row.parentId != null) {
+                    $("#audio_b").dialog("open");
+                    $("#buttonsssss").prop("src", "${pageContext.request.contextPath}/audio/" + row.downpath);
+                } else {
+                    $.messager.alert('提示', '请选择章节');
+                }
             },
             toolbar: toolbar,
+            lines: false,
+            animate: true,
             method: "post",
             url: 'listAllAlbum',
             idField: 'id',
@@ -160,6 +166,7 @@
             buttonAlign: 'left'
         });
         $("#album_btn").linkbutton();
+
     });
 
     function addAudio() {
@@ -174,15 +181,16 @@
 
 </script>
 <table id="albumTable"></table>
+
 <div id="detailsDiv" align="center">
     <form id="detailsForm" method="post"><br/><br/>
-        标题 : <input class="easyui-validatebox" type="text" name="title" data-options="required:true"/>
-        数量 : <input class="easyui-validatebox" type="text" name="count" data-options="required:true'"/><br/><br/>
-        评分 : <input class="easyui-validatebox" type="text" name="score" data-options="required:true'"/>
-        作者 : <input class="easyui-validatebox" type="text" name="author" data-options="required:true'"/><br/><br/>
-        播音 : <input class="easyui-validatebox" type="text" name="broadcast" data-options="required:true'"/>
-        简介 : <input class="easyui-validatebox" type="text" name="brief" data-options="required:true'"/><br/><br/>
-        时间 : <input class="easyui-validatebox" type="text" name="publishdate" data-options="required:true'"/>
+        标题 : <input class="easyui-textbox" type="text" name="title" data-options="required:true"/>
+        数量 : <input class="easyui-textbox" type="text" name="count" data-options="required:true'"/><br/><br/>
+        评分 : <input class="easyui-textbox" type="text" name="score" data-options="required:true'"/>
+        作者 : <input class="easyui-textbox" type="text" name="author" data-options="required:true'"/><br/><br/>
+        播音 : <input class="easyui-textbox" type="text" name="broadcast" data-options="required:true'"/>
+        简介 : <input class="easyui-textbox" type="text" name="brief" data-options="required:true'"/><br/><br/>
+        时间 : <input class="easyui-textbox" type="text" name="publishdate" data-options="required:true'"/>
         图片 : <img src="" id="album_img" width="150" height="100"><br/><br/>
     </form>
 </div>
