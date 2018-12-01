@@ -1,6 +1,7 @@
 package com.baizhi.dao;
 
 import com.baizhi.entity.User;
+import com.baizhi.entity.UserDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,5 +20,19 @@ public interface UserDao {
     int updateByPrimaryKey(User record);
 
     List<User> selectAllUser(@Param("start") int start, @Param("row") int row, @Param("user") User user);
+
+    int selectWeekOneLogonUser();
+
+    int selectWeekTwoLogonUser();
+
+    int selectWeekThreeLogonUser();
+
+    int selectWeekFourLogonUser();
+
+    int selectWeekFiveLogonUser();
+
+    List<UserDTO> listAllMan();
+
+    List<UserDTO> listAllWoman();
 
 }

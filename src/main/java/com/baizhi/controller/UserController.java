@@ -22,4 +22,24 @@ public class UserController {
 
         return userService.selectAllUser(page, rows, user);
     }
+
+    @RequestMapping("/selectWeekOneLogonUser")
+    @ResponseBody
+    public Map selectWeekOneLogonUser() {
+
+        return userService.selectWeekOneLogonUser();
+    }
+
+    @RequestMapping("/listAllMan")
+    @ResponseBody
+    public Map listAllMan() {
+
+        return userService.listAllMan();
+    }
+
+    @RequestMapping("/listAllWoman")
+    @ResponseBody
+    public Map listAllWoman() {
+        return userService.listAllWoman();
+    }
 }

@@ -19,7 +19,35 @@
 
     <select id="selectAllUser" resultMap="BaseResultMap">
     SELECT * FROM user
-  </select>
+    </select>
+    <!--   -->
+    <select id="selectWeekOneLogonUser" resultType="int">
+        select count(*) from user where datediff(SYSDATE(),date)<![CDATA[  <  ]]>7
+    </select>
+
+    <select id="selectWeekTwoLogonUser" resultType="int">
+        select COUNT(*) from user where datediff(SYSDATE(),date)>=7 and  datediff(SYSDATE(),date)<![CDATA[  <  ]]>14;
+    </select>
+
+    <select id="selectWeekThreeLogonUser" resultType="int">
+        select COUNT(*) from user where datediff(SYSDATE(),date)>=14 and  datediff(SYSDATE(),date)<![CDATA[  <  ]]>21;
+    </select>
+
+    <select id="selectWeekFourLogonUser" resultType="int">
+        select COUNT(*) from user where datediff(SYSDATE(),date)>=21 and  datediff(SYSDATE(),date)<![CDATA[  <  ]]>28;
+    </select>
+
+    <select id="selectWeekFiveLogonUser" resultType="int">
+        select COUNT(*) from user where datediff(SYSDATE(),date)>=28 and  datediff(SYSDATE(),date)<![CDATA[  <  ]]>35;
+    </select>
+    <!-- -->
+    <select id="listAllMan" resultType="UserDTO">
+        select province name,count(password) value from user WHERE sex='男' GROUP BY province;
+    </select>
+
+    <select id="listAllWoman" resultType="UserDTO">
+        select province name,count(password) value from user WHERE sex='女' GROUP BY province;
+    </select>
 
 
     <sql id="Base_Column_List">

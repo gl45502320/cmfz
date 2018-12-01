@@ -12,6 +12,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.edatagrid.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/echarts.min.js"></script>
     <script type="text/javascript">
         <!--菜单处理-->
         $(function () {
@@ -85,7 +86,6 @@
 
 
     </script>
-
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',split:true" style="height:60px;background-color:  #5C160C">
@@ -111,7 +111,8 @@
 </div>
 <div data-options="region:'center'">
     <div id="main_tt" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">
-
+        <div title="主页" data-options="iconCls:'icon-neighbourhood',"
+             style="background-image:url(main/image/main.jpg);background-repeat: no-repeat;background-size:100% 100%;"></div>
     </div>
 </div>
 <!-- 用户注册界面 (logon)弹窗-->
