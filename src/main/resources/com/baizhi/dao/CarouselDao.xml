@@ -12,6 +12,11 @@
         select count(*) FROM carousel
     </select>
 
+
+    <select id="showAllCarouse" resultType="Carousel">
+         select * FROM carousel
+    </select>
+
     <update id="updateCarouselStatus">
         UPDATE carousel SET STATUS =#{status} where id=#{id}
     </update>

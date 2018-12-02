@@ -11,6 +11,9 @@ public class CmfzApplicationTests {
 
     @Test
     public void contextLoads() {
+        String i = "ssyj";
+
+        System.out.println(i.equals("ssyj") + " -- " + i);
 
 
     }

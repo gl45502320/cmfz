@@ -86,6 +86,7 @@
       #{sign,jdbcType=VARCHAR}, #{headpic,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{date,jdbcType=TIMESTAMP})
   </insert>
+
     <insert id="insertSelective" parameterType="com.baizhi.entity.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -171,6 +172,8 @@
             </if>
         </trim>
     </insert>
+
+
     <update id="updateByPrimaryKeySelective" parameterType="com.baizhi.entity.User">
         update user
         <set>
@@ -213,6 +216,8 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+
     <update id="updateByPrimaryKey" parameterType="com.baizhi.entity.User">
     update user
     set phoneNum = #{phonenum,jdbcType=VARCHAR},

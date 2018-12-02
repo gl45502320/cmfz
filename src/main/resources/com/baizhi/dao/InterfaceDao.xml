@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace的值是Dao接口的全限定名 -->
+<mapper namespace="com.baizhi.dao.InterfaceDao">
+
+
+    <select id="showAllCarouse" resultType="Carousel">
+         select * FROM carousel
+    </select>
+
+    <select id="showAllAlbum" resultType="Album">
+       select * FROM album
+    </select>
+
+    <select id="showOneAlbum" resultType="Album">
+         select * FROM album WHERE id=#{id}
+    </select>
+
+    <select id="showOneAlbumAllAudio" resultType="Audio">
+      select * FROM audio WHERE parent_id=#{id}
+    </select>
+
+    <select id="loginOne" resultType="User">
+        SELECT * from user where phoneNum=#{phone}
+    </select>
+
+
+    <insert id="logonOneUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="phonenum != null">
+                phoneNum,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="salt != null">
+                salt,
+            </if>
+            <if test="dharmname != null">
+                dharmName,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+            <if test="headpic != null">
+                headPic,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="date != null">
+                date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="phonenum != null">
+                #{phonenum,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+                #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="dharmname != null">
+                #{dharmname,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="headpic != null">
+                #{headpic,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="date != null">
+                #{date,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="selectOneUserUpdate" resultType="User">
+    SELECT * from user where id=#{id}
+    </select>
+
+
+    <update id="updateOneUser" parameterType="User">
+        update user
+        <set>
+            <if test="phonenum != null">
+                phoneNum = #{phonenum,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+                salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="dharmname != null">
+                dharmName = #{dharmname,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="headpic != null">
+                headPic = #{headpic,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="date != null">
+                date = #{date,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+</mapper>
+
+

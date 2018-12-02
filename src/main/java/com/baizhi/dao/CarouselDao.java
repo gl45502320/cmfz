@@ -16,4 +16,6 @@ public interface CarouselDao {
     public void deleteOneCarousel(@Param("id") int id);
 
     public void addOneCarousel(@Param("carousel") Carousel carousel);
+
+
 }
