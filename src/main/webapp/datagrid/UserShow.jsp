@@ -25,18 +25,20 @@
         iconCls: 'icon-20130406125647919_easyicon_net_16',
         text: "用户信息导出",
         handler: function () {
-            $.ajax({
-                url: "exportUserMessage",
-                success: function (data) {
-                    console.log(data)
-                    if (data) {
-                        $.messager.alert('下载提示', '下载成功');
-                    } else {
-                        $.messager.alert('下载提示', '下载失败');
-
-                    }
-                },
-            });
+            location.href = "${pageContext.request.contextPath}/exportUserMessage";
+            // $.ajax({
+            //     url: "exportUserMessage",
+            //     type:"get",
+            //     success: function (data) {
+            //         console.log(data)
+            //         if (data) {
+            //             $.messager.alert('下载提示', '下载成功');
+            //         } else {
+            //             $.messager.alert('下载提示', '下载失败');
+            //
+            //         }
+            //     },
+            // });
         }
     }]
 
