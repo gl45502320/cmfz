@@ -196,4 +196,19 @@ public class UserController {
 
         return bool;
     }
+
+
+    @RequestMapping("importingUser")
+    @ResponseBody
+    public boolean importingUser() {
+//        ImportParams params = new ImportParams();
+//        params.setTitleRows(1);
+//        params.setHeadRows(1);
+//        long start = new Date().getTime();
+//        List<MsgClient> list = ExcelImportUtil.importExcel(
+//         new File(PoiPublicUtil.getWebRootPath("import/user.xlsx")),
+//        MsgClient.class, params);
+//
+        return false;
+    }
 }

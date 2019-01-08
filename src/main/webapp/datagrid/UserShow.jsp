@@ -19,7 +19,7 @@
         iconCls: 'icon-20130406125519344_easyicon_net_16',
         text: "用户信息导入",
         handler: function () {
-
+            $('#UserShow_dd').dialog("open");
         }
     }, '-', {
         iconCls: 'icon-20130406125647919_easyicon_net_16',
@@ -66,5 +66,47 @@
             {field: 'date', title: '时间', width: 100, align: 'center'},
         ]]
     });
+    $(function () {
+        $('#UserShow_dd').dialog({
+            title: '信息导入',
+            width: 400,
+            height: 160,
+            closed: true,
+            cache: false,
+            href: "",
+            modal: true,
+            buttons: [{
+                text: '确认',
+                handler: function () {
+                    $("#addFormUserExcel").form("submit", {
+                        url: "addOneAudio",
+                        success: function (data) {
+                            $("#UserShow_dd").dialog("close", true);
+
+                        },
+                    });
+
+                }
+            }, {
+                text: '取消',
+                handler: function () {
+                    $("#UserShow_dd").dialog("close", true);
+                }
+            }],
+
+        });
+
+        $('#UserShow_fb').filebox({
+            buttonText: '选择文件',
+            buttonAlign: 'left'
+        });
+    })
 </script>
 <table id="dg"></table>
+
+<div id="UserShow_dd" align="center">
+    <form id="addFormUserExcel" method="post" enctype="multipart/form-data"><br/>
+        <input id="UserShow_fb" type="text" name="file" style="width:200px"/><br/><br/>
+        <%--<a id="album_btn" href="#" onclick="addAudio()">提交</a>--%>
+    </form>
+</div>

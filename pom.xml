@@ -175,8 +175,6 @@
             <version>3.17</version>
         </dependency>
 
-
-        <!--发短信jar包-->
         <dependency>
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-base</artifactId>
@@ -193,17 +191,24 @@
             <version>3.2.0</version>
         </dependency>
 
+        <!--此版本jar包和jaxb1-impl.jar包冲突-->
+        <!--<dependency>-->
+        <!--<groupId>com.aliyun</groupId>-->
+        <!--<artifactId>aliyun-java-sdk-core</artifactId>-->
+        <!--<version>4.0.6</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
-            <version>4.0.6</version>
+            <version>2.4.3</version>
         </dependency>
+
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
             <version>1.1.0</version>
         </dependency>
-        <!--发短信jar 包end  -->
 
 
     </dependencies>

@@ -54,11 +54,14 @@ public class InterfaceController {
     @RequestMapping("/showAlbum")
     @ResponseBody
     public Map showAlbum(int id, int uid) {
+        Hint hint = new Hint();
         Map map = new HashMap();
         if (id != 0) {
             return interfaceService.showOneAlbum(id);
         } else {
-            map.put("error", "error");
+            hint.setErrno("-501");
+            hint.setErrmsg("参数错误！");
+            map.put("error", hint);
             return map;
         }
 

@@ -199,10 +199,9 @@
         <input id="album_tb" type="text" name="title" style="width:200px"/><br/><br/>
         <input id="album_id" type="hidden" name="id" value="" style="width:200px"/><br/><br/>
         <input id="album_fb" type="text" name="file" style="width:200px"/><br/><br/>
-        <%--<a id="album_btn" href="#" onclick="addAudio()">提交</a>--%>
     </form>
-
 </div>
+
 <div id="audio_b">
     <audio src="" id="buttonsssss" autoplay="autoplay" controls="controls" loop="loop"></audio>
 </div>
